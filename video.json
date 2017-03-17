@@ -1,0 +1,176 @@
+{
+	"firstVideoTrack": "introduction",
+
+	"videoTracks" : {
+        "introduction": {
+    
+	        "formats": [
+                "webm",
+                "mp4"
+             ],
+             "controls": "#my-controls",
+             "endAction": "repeat",
+			 "actions" : [
+				
+				 
+				{
+					"timing" : {
+						"start" : "0"
+					},
+					"events":[
+						{
+							"trigger": "keydown",
+							"response": "addClass",
+							"elementsQuery" : "h1",
+							"class": "alternative"
+						},
+						{
+							"trigger": "keyup",
+							"response": "removeClass",
+							"elementsQuery" : "h1",
+							"class": "alternative"
+						}
+					]
+				},
+				
+				
+				{
+					"dimensions": {
+						"x" : "50%",
+						"y" : "20%",
+						"width" : "50%",
+						"height" : "60%"
+					},
+					"timing" : {
+                        "start" : "1"
+                    },
+					"events":[
+						{
+							"trigger" : "keydown",
+							"response": "goToVideoTrack",
+							"trackName" : "second",
+							"seekToSameTime": true,
+							"key": 80
+						}
+					]
+                },
+				
+
+				
+				{
+					"timing" : {
+                        "start" : "2.62"
+                    },
+					"events":[
+						{
+							"trigger" : "time",
+							"response": "changeContent",
+							"elementsQuery" : "p",
+							"content": "Testing"
+						}
+					]
+                },
+				
+				{
+					"timing" : {
+                        "start" : "0:0:4.7"
+                    },
+					"events":[
+						{
+							"trigger" : "time",
+							"response": "restoreContent",
+							"elementsQuery" : "p"
+						}
+					]
+                },
+				
+
+                {
+					"timing" : {
+                        "start" : 500
+                    },
+					"events":[
+						{
+							"trigger": "time",
+							"response": "addClass",
+							"class" : "red",
+							"elementsQuery" : "body"
+						}
+					]
+				},
+
+                {
+					"timing" : {
+                        "start" : 1500
+                    },
+					"events":[
+						{
+							"trigger": "time",
+							"response": "removeClass",
+							"class" : "red",
+							"elementsQuery" : "body"
+						}
+					]
+				},
+				
+				{
+					"dimensions": {
+						"x" : "50%",
+						"y" : "20%",
+						"width" : "50%",
+						"height" : "60%",
+						"html": "<strong>Hello</strong> World!"
+						
+					},
+					"timing" : {
+						"start" : "0",
+						"end" : "10"
+					},
+					"events":[
+						{
+							"trigger": "pointerdown",
+							"response": "addClass",
+							"elementsQuery" : "h2",
+							"class": "alternative"
+						},
+						{
+							"trigger": "pointerup",
+							"response": "removeClass",
+							"elementsQuery" : "h2",
+							"class": "alternative"
+						}
+					]
+				}
+            ]
+        },
+        "second": {
+            "formats": [
+                "webm",
+                "mp4"
+             ],
+             "controls": true,
+			 "actions":[
+				 {
+					"dimensions": {
+						"x" : "50%",
+						"y" : "20%",
+						"width" : "50%",
+						"height" : "60%"
+					},
+					"timing" : {
+                        "start" : "1"
+                    },
+					"events":[
+						{
+							"trigger" : "keyup",
+							"response": "goToVideoTrack",
+							"trackName" : "introduction",
+							"seekToTime": "30",
+							"key": 80
+						}
+					]
+                }
+			 ]
+        }
+    }
+}

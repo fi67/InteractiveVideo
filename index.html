@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+	<head>
+		<title>SuperDuperVideo</title>
+		<style>
+			.superdupervideo{
+				background:black;
+				width:600px;
+				height:400px;
+				color:#fff;
+			}
+		</style>
+		
+		<!-- Include the required css file -->
+		<link rel="stylesheet" href="superdupervideo/superdupervideo.css">
+		
+		<!-- SuperDuperVideo requires html5shiv, html5 video -->
+		<script src="superdupervideo/modernizr.js"></script>
+	</head>
+	<body>
+		<h1>SuperDuperVideo</h1>
+		<h2>Another heading</h2>
+		<p>The quick brown fox jumps over the lazy dog.</p>
+		
+		<div class="superdupervideo" data-sdv-json="video.json">
+			<video controls preload="metadata" poster="videos/fallback-video.jpg" id="video">
+				<!-- Browser supports Video, but doesn't support JS or doesn't support everything superdupervideo needs -->
+				<source src="videos/fallback-video.webm">
+				<source src="videos/fallback-video.mp4">
+				
+				<!-- Browser is so basic that it does not support video even -->
+				<h2>Sorry, your browser does not support video</h2>
+				<!-- Insert polyfill here -->
+				
+			</video>
+		</div>
+		
+		<div id="my-controls" style="display:none;">
+			<h2>Controls</h2>
+			<p>These controls are not intertwined with SuperDuperVideo code.</p>
+			<button id="play">Play</button> | 
+			<button id="pause">Pause</button> | 
+			Scrubber:
+			<input type="range" id="seek" step="1" min="0" max="100" value="0"/> |
+			Volume: 
+			<input type="range" id="volume" max="1" min="0" step="0.1" value="1" />
+		</div>
+		
+		
+	
+		<!-- Include the required JS files before your own code -->
+		<script src="superdupervideo/utility-functions.js"></script>
+		<script src="superdupervideo/core-classes.js"></script>
+		<script src="superdupervideo/event-classes.js"></script>
+		<script src="superdupervideo/superdupervideo.js"></script>
+		
+		<!-- And now any of your own JS, like some code for controls -->
+		<script src="my-controls.js"></script>
+	</body>
+</html>
+
+<!-- TODO: Serve from a proper web server to see whether this fixes Safari video issue - suspect it's caused by Safari requesting specific byte ranges -->
+<!-- TODO: Test in IE/Edge -->
+<!-- TODO: Test on mobile devices -->

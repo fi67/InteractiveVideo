@@ -1,0 +1,27 @@
+.superdupervideo{
+	position:relative;
+}
+
+.superdupervideo video{
+	display:block;
+	position:absolute;
+	width:100%;
+	height:auto;
+	left:0;
+	top:0;
+}
+
+.sdv-annotation{
+	position:absolute;
+	background:rgba(0,0,255,.2);
+}
+
+.red{
+	background-color:red;
+}
+
+.alternative{
+	font-weight:bold;
+	color: purple;
+	border:5px solid orange;
+}

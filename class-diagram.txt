@@ -1,0 +1,132 @@
+@startuml
+SuperDuperVideoCoordinator --|> Track : has zero to many
+Track --|> Action : has zero to many
+Action --|> Dimensions : has zero or one
+Action --|> Timing : has zero or one
+Action --|> Event : has zero to many
+
+ClassEvent <|-- Event
+AddClassEvent <|-- ClassEvent
+RemoveClassEvent <|-- ClassEvent
+VideoTrackEvent <|-- Event
+GoToVideoTrackEvent <|-- VideoTrackEvent
+ContentEvent <|-- Event
+ChangeContentEvent <|-- ContentEvent
+OpenURLEvent <|-- Event
+RestoreContentEvent <|-- ContentEvent
+
+class SuperDuperVideoCoordinator{
+	DOMElement element
+	DOMElement videoElement
+	Track[] tracks
+	String firstVideoTrack
+	..
+	String videoDirectory = "/videos"
+}
+
+
+class Track{
+	String[] formats
+	Boolean controls
+	EndAction endAction
+	String name;
+	Action[] actions;
+}
+
+class Timing{
+	Integer start (milliseconds);
+	Integer end (milliseconds);
+}
+
+class Dimensions{
+	String x;
+	String y;
+	String width;
+	String height;
+	String html;
+}
+
+class Event{
+	Trigger trigger;
+	Response response;
+	Integer key;
+	- performEvent()
+}
+
+class Action{
+	Event[] events;
+  ..
+	Dimensions dimensions;
+	Timing timing;
+	DomElement element;
+}
+
+class ClassEvent{
+	String class;
+	String elementsQuery;
+}
+
+class AddClassEvent{
+
+}
+class RemoveClassEvent{
+
+}
+
+class OpenURLEvent{
+	String url;
+	Boolean usePopup;
+}
+
+class ContentEvent{
+	String elementsQuery;
+}
+
+class ChangeContentEvent{
+	// Stores the previous content
+	String content;
+}
+
+class RestoreContentEvent{
+}
+
+class VideoTrackEvent{
+	Boolean seekToSameTime; (Will ignore seekToTime if true)
+	..
+	Integer seekToTime;
+}
+
+class GoToVideoTrackEvent{
+	// Stores the previous track name
+	..
+	String trackName;
+}
+
+
+enum EndAction{
+	REPEAT,
+	STOP,
+	REWIND
+}
+
+enum Trigger{
+	TIME,
+	CLICK,
+	HOLD,
+	POINTERDOWN,
+	POINTERUP,
+	KEYDOWN,
+	KEYUP
+}
+
+enum Response{
+	ADDCLASS,
+	REMOVECLASS,
+	GOTOVIDEOTRACK,
+	CHANGECONTENT,
+	RESTORECONTENT,
+	OPENURL,
+}
+
+
+@enduml
